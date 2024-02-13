@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "coastalassistance"
+version = "0.1.0"
+description = ""
+authors = ["ActusNileh <actusnileh@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10,<3.12"
+# Issue between poetry and tensorflow metadata since >=2.11
+# This is a temporary workaround
+# related to https://github.com/python-poetry/poetry/issues/8271
+# Inspired from https://github.com/tensorflow/tensorflow/blob/adb39b04e9cb116df4659a7e2de9eea27e62f25c/tensorflow/tools/pip_package/setup.py#L148-L162
+tensorflow = {version = "^2.13.0" }
+tensorflow-macos = { version = "^2.13.0", platform = "darwin", markers = "platform_machine=='arm64'" }
+tensorflow-intel = { version = "^2.13.0", platform = "win32" }
+tensorflow-cpu = [
+    { version = "^2.13.0", platform = "linux", markers = "platform_machine!='arm64' and platform_machine!='aarch64'" },
+    { version = "^2.13.0", platform = "darwin", markers = "platform_machine!='arm64' and platform_machine!='aarch64'" },]
+tensorflow-cpu-aws = { version = "^2.13.0", platform = "linux", markers = "platform_machine=='arm64' or platform_machine=='aarch64'" }
+# https://github.com/tensorflow/tensorflow/blob/adb39b04e9cb116df4659a7e2de9eea27e62f25c/tensorflow/tools/pip_package/setup.py#L107-L108
+# https://github.com/python-poetry/poetry/issues/8271#issuecomment-1697740447
+tensorflow-io-gcs-filesystem = [
+    { version = ">= 0.23.1", markers = "platform_machine!='arm64' or platform_system!='Darwin'" },
+    { version = "< 0.32.0", markers = "platform_system == 'Windows'" }
+]
+aiogram = "^3.3.0"
+aiosqlite = "^0.19.0"
+async-lru = "^2.0.4"
+geopy = "^2.4.1"
+opencv-python = "^4.9.0.80"
+psycopg2 = "^2.9.9"
+python-dotenv = "^1.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

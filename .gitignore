@@ -1,0 +1,8 @@
+poetry.lock
+main_db.db
+__pycache__/
+map_with_points.html
+secret.env
+.vscode/
+.env
+keys
