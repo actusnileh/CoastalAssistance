@@ -3,10 +3,10 @@ from aiogram.types import Message
 from aiogram.filters import Command
 from misc.maps import start_map
 from constants.const_list_added import LIST_PIC_NON_ACTIVATED
-from database.main_db import (
+from database.repositories.shore import (
     delete_by_id,
-    get_info_if_activated_zero,
-    set_activated_to_one,
+    info_if_activated_zero,
+    activated_to_one,
 )
 from misc.location_info import get_location_info
 from keyboards.kb.choice import choice
@@ -93,7 +93,7 @@ async def command_help_answer(message: Message, state: FSMContext):
 
 @router.callback_query(F.data == "admin_load_photos")
 async def list_all_photos(callback: types.CallbackQuery):
-    user_shores = await get_info_if_activated_zero()
+    user_shores = await info_if_activated_zero()
     if not user_shores:
         await callback.answer(
             "❕ Ещё *не добавили* ни одной фотографии пляжа.",
@@ -136,6 +136,6 @@ async def approve_non_approve_callback(callback_query: types.CallbackQuery):
     await callback_query.answer()
     id = (callback_query.data.split("_"))[1]
     print(id)
-    await set_activated_to_one(id=int(id))
+    await activated_to_one(id=int(id))
     await start_map()
     await callback_query.message.answer("Успешно добавлено.")

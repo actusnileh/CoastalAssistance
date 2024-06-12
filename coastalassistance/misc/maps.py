@@ -1,5 +1,5 @@
 import aiohttp
-from database.main_db import sql_get_coordinates_shores
+from database.repositories.shore import coordinates_shores
 from config import settings
 
 
@@ -11,14 +11,16 @@ async def get_photo_url(file_key):
             if response.status == 200:
                 data = await response.json()
                 file_path = data["result"]["file_path"]
-                photo_url = f"https://api.telegram.org/file/bot{settings.bot_token}/{file_path}"
+                photo_url = (
+                    f"https://api.telegram.org/file/bot{settings.bot_token}/{file_path}"
+                )
                 return photo_url
             else:
                 return None
 
 
 async def start_map():
-    coordinates_with_descriptions_photos = await sql_get_coordinates_shores()
+    coordinates_with_descriptions_photos = await coordinates_shores()
     js_points = ""
     for (
         coord,

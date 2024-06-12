@@ -2,7 +2,8 @@ from aiogram import Router, F
 from aiogram.types import Message
 from aiogram.enums import ParseMode
 
-from database.main_db import sql_read_count_photos, sql_read_usertype
+from database.repositories.user import read_usertype
+from database.repositories.shore import read_count_photos
 
 from constants.const_settings import SETTINGS, SETTINGS_TEXT
 
@@ -13,8 +14,8 @@ router = Router()
 async def settings(message: Message):
     user_id = message.from_user.id
     first_name = message.from_user.first_name
-    usertype = await sql_read_usertype(user_id)
-    count_photos = await sql_read_count_photos(user_id)
+    usertype = await read_usertype(user_id)
+    count_photos = await read_count_photos(user_id)
 
     await message.answer(
         SETTINGS.format(

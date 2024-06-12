@@ -5,3 +5,9 @@ services:
     command: python coastalassistance/main.py
     volumes:
       - ..:/code
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge

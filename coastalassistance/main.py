@@ -2,11 +2,10 @@ import asyncio
 from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
 
+from database.database import create_tables
 from misc.maps import start_map
 
 from config import settings as settings_config
-
-from database.main_db import sql_start
 
 from handlers import registration
 from handlers import settings
@@ -18,7 +17,7 @@ from handlers import help
 
 
 async def main():
-    await sql_start()
+    await create_tables()
     await start_map()
 
     bot = Bot(token=settings_config.bot_token)

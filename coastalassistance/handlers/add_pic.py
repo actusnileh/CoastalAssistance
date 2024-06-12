@@ -2,7 +2,7 @@ import os
 from aiogram import Router, F
 from misc.maps import start_map
 from neural_networks.load_model import check_prediction
-from database.main_db import sql_add_shores
+from database.repositories.shore import add_shores
 from keyboards.kb.main_menu import main_menu
 from constants.const_addpic import (
     ADD_PIC_ERROR,
@@ -150,7 +150,7 @@ async def about_load_pic(message: Message, state: FSMContext):
         shore_destruction = shore_data["destruction"]
 
         try:
-            await sql_add_shores(
+            await add_shores(
                 user_id=message.from_user.id,
                 photo=shore_photo,
                 geo_tag=shore_geo_tag,
