@@ -12,7 +12,7 @@ from misc.location_info import get_location_info
 from keyboards.kb.choice import choice
 from keyboards.kb.main_menu import main_menu
 from keyboards.inkb.inkb_admin import admin_menu, approve_photo_menu
-from config import ADMIN_ID
+from config import settings
 from aiogram import types
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
@@ -21,7 +21,7 @@ from aiogram.enums import ParseMode
 
 router = Router()
 
-admin_id = int(ADMIN_ID)
+admin_id = settings.admin_id
 
 
 @router.message(Command("oblako"))

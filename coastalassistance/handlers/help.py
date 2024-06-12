@@ -20,7 +20,7 @@ from constants.const_help import (
 from keyboards.kb.exit_b import exit
 
 from misc.bot import bot
-from config import ADMIN_ID
+from config import settings
 
 
 class Help(StatesGroup):
@@ -67,7 +67,7 @@ async def command_help_finish(message: Message, state: FSMContext):
         await state.update_data(help_send=message.text)
         try:
             await bot.send_message(
-                ADMIN_ID,
+                settings.admin_id,
                 f"id: {message.from_user.id}\nusername: {message.from_user.username}\n\n{message.text}",
                 reply_markup=await admin_menu(),
             )

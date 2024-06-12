@@ -1,17 +1,17 @@
 import aiohttp
 from database.main_db import sql_get_coordinates_shores
-from config import BOT_TOKEN, YANDEX_MAPS_API
+from config import settings
 
 
 async def get_photo_url(file_key):
-    url = f"https://api.telegram.org/bot{BOT_TOKEN}/getFile"
+    url = f"https://api.telegram.org/bot{settings.bot_token}/getFile"
     params = {"file_id": file_key}
     async with aiohttp.ClientSession() as session:
         async with session.get(url, params=params) as response:
             if response.status == 200:
                 data = await response.json()
                 file_path = data["result"]["file_path"]
-                photo_url = f"https://api.telegram.org/file/bot{BOT_TOKEN}/{file_path}"
+                photo_url = f"https://api.telegram.org/file/bot{settings.bot_token}/{file_path}"
                 return photo_url
             else:
                 return None
@@ -43,7 +43,7 @@ async def start_map():
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://telegram.org/js/telegram-web-app.js"></script>
         <title>Yandex Maps Integration</title>
-        <script src="https://api-maps.yandex.ru/2.1/?apikey={YANDEX_MAPS_API}&lang=ru_RU" type="text/javascript"></script>
+        <script src="https://api-maps.yandex.ru/2.1/?apikey={settings.yandex_maps_token}&lang=ru_RU" type="text/javascript"></script>
         <style>
             #map {{
                 width: 100%;

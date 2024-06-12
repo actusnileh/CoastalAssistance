@@ -1,8 +1,17 @@
-import os
-from dotenv import load_dotenv
+import pathlib
 
-load_dotenv()
+import environ
+from pydantic_settings import BaseSettings
 
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-ADMIN_ID = os.getenv("ADMIN_ID")
-YANDEX_MAPS_API = os.getenv("YANDEX_MAPS_API")
+BASE_DIR = pathlib.Path(__file__).parent.parent
+env = environ.Env()
+environ.Env.read_env(str(BASE_DIR.joinpath(".env")))
+
+
+class Settings(BaseSettings):
+    bot_token: str = env("BOT_TOKEN")
+    admin_id: str = env("ADMIN_ID")
+    yandex_maps_token: str = env("YANDEX_MAPS_TOKEN")
+
+
+settings = Settings()

@@ -4,7 +4,7 @@ from aiogram.fsm.storage.memory import MemoryStorage
 
 from misc.maps import start_map
 
-from config import BOT_TOKEN
+from config import settings as settings_config
 
 from database.main_db import sql_start
 
@@ -21,14 +21,10 @@ async def main():
     await sql_start()
     await start_map()
 
-    bot = Bot(
-        token=BOT_TOKEN
-    )
+    bot = Bot(token=settings_config.bot_token)
     dp = Dispatcher(storage=MemoryStorage())
 
-    dp.include_router(
-        registration.router
-    )
+    dp.include_router(registration.router)
 
     dp.include_router(settings.router)
     dp.include_router(add_pic.router)
