@@ -3,7 +3,11 @@ from aiogram.types import Message
 from aiogram.filters import Command
 from misc.maps import start_map
 from constants.const_list_added import LIST_PIC_NON_ACTIVATED
-from database.main_db import delete_by_id, get_info_if_activated_zero, set_activated_to_one
+from database.main_db import (
+    delete_by_id,
+    get_info_if_activated_zero,
+    set_activated_to_one,
+)
 from misc.location_info import get_location_info
 from keyboards.kb.choice import choice
 from keyboards.kb.main_menu import main_menu
@@ -17,7 +21,7 @@ from aiogram.enums import ParseMode
 
 router = Router()
 
-admin_id = ADMIN_ID
+admin_id = int(ADMIN_ID)
 
 
 @router.message(Command("oblako"))

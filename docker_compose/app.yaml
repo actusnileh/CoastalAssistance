@@ -1,0 +1,7 @@
+services:
+  aiogram_bot:
+    container_name: aiogram_bot
+    build: ..
+    command: python coastalassistance/main.py
+    volumes:
+      - ..:/code

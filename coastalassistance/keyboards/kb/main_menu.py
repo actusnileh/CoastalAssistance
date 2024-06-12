@@ -11,7 +11,7 @@ async def main_menu() -> ReplyKeyboardMarkup:
 
     kb.button(text="🌊 Что фотографировать?")
 
-    kb.button(text="🗺 Карты", web_app=WebAppInfo(url="https://192.168.59.115:45321/map_with_points.html"))
+    kb.button(text="🗺 Карты", web_app=WebAppInfo(url="https://192.168.31.78:45331/map_with_points.html"))
 
     kb.button(text="💬 Обращение")
     kb.button(text="⚙️ Настройки")

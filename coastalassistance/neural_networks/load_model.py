@@ -1,8 +1,10 @@
+import os
 import cv2
 import tensorflow as tf
 
 # Загрузка модели
-model = tf.keras.models.load_model(r"coastalassistance\neural_networks\model_beach")
+model_path = os.path.join("coastalassistance", "neural_networks", "model_beach")
+model = tf.keras.models.load_model(model_path)
 
 
 async def check_prediction(image_path):

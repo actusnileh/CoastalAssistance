@@ -83,5 +83,5 @@ async def start_map():
     </html>
     """
 
-    with open("map_with_points.html", "w") as f:
+    with open("map_with_points.html", "w", encoding="utf-8") as f:
         f.write(html_content)
