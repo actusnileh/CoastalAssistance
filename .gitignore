@@ -6,3 +6,4 @@ secret.env
 .vscode/
 .env
 keys
+docker_compose/dbdata

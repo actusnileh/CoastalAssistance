@@ -23,6 +23,9 @@ git clone https://github.com/actusnileh/CoastalAssistance.git && cd CoastalAssis
 <h2> Основные команды </h2>
 
 * `make app` - Запустить контейнер
-* `make build` - Забилдить контейнер
-* `make drop` - Остановить контейнер
+* `make build` - Забилдить контейнеры
+* `make storage` - Запустить контейнер
+* `make drop-storage` - Остановить контейнер
+* `make drop-app` - Остановить контейнер
+* `make drop-all` - Остановить все контейнеры
 * `make logs` - Просмотр логов в контейнере

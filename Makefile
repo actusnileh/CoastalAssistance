@@ -6,14 +6,18 @@ STORAGE_FILE = docker_compose/database.yaml
 app:
 	${DC} -f ${APP_FILE} up -d
 
-.PHONY: app-drop
-drop:
+.PHONY: drop-app
+drop-app:
 	${DC} -f ${APP_FILE} down
 
-.PHONY: drop-all
-drop-all:
-	${DC} -f ${APP_FILE} -f ${STORAGE_FILE} down
-	
+.PHONY: storage
+storage:
+	${DC} -f ${STORAGE_FILE} up -d
+
+.PHONY: drop-storage
+drop-storage:
+	${DC} -f ${STORAGE_FILE} down
+
 .PHONY: logs
 logs:
 	${DC} -f ${APP_FILE} -f ${STORAGE_FILE} logs -f
@@ -22,3 +26,6 @@ logs:
 build:
 	${DC} -f ${APP_FILE} -f ${STORAGE_FILE} up --build -d
 
+.PHONY: drop-all
+drop-all:
+	${DC} -f ${APP_FILE} -f ${STORAGE_FILE} down
